@@ -1,0 +1,77 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const postList = document.getElementById("post-list");
+    const modal = document.getElementById("postModal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalImage = document.getElementById("modal-image");
+    const modalHarga = document.getElementById("modal-harga");
+    const modalContent = document.getElementById("modal-content");
+    const closeBtn = document.querySelector(".close-btn");
+    const loading = document.getElementById("loading");
+
+    // Menampilkan loading sebelum fetch data
+    loading.style.display = "block";
+
+    // Ambil data dari JSON
+    fetch("/assets/data/produk.json")
+        .then(response => response.json())
+        .then(posts => {
+            // Sembunyikan loading setelah data dimuat
+            loading.style.display = "none";
+
+            // Kosongkan daftar sebelum menambahkan
+            postList.innerHTML = "";
+
+            // Batasi posts content
+            posts.slice(0, 4).forEach(post => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <div class="card-box" data-id="${post.id}">
+                        <img src="${post.image}" class="card-img-top" alt="${post.title}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">${post.title}</h5>
+                            <p>Rp. ${post.harga}</p>
+                            <p class="card-text">${post.content.substring(0, 50)}...</p>
+                        </div>
+                    </div>
+                `;
+                postList.appendChild(card);
+            });
+
+            // Event listener untuk membuka modal berdasarkan ID
+            document.querySelectorAll(".card-box").forEach(card => {
+                card.addEventListener("click", function () {
+                    const postId = parseInt(this.getAttribute("data-id"));
+                    const post = posts.find(p => p.id === postId);
+
+                    if (post) {
+                        modalTitle.textContent = post.title;
+                        modalImage.src = post.image;
+                        modalHarga.textContent = post.harga;
+                        modalContent.textContent = post.content;
+                        modal.classList.add("show");
+                        document.body.classList.add("no-scroll");
+                    }
+                });
+            });
+        })
+        .catch(error => {
+            loading.innerHTML = "Gagal memuat data!";
+            console.error("Gagal mengambil data:", error);
+        });
+
+    // Event listener untuk menutup modal
+    closeBtn.addEventListener("click", function () {
+        modal.classList.remove("show");
+        document.body.classList.remove("no-scroll");
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.classList.remove("show");
+            document.body.classList.remove("no-scroll");
+        }
+    });
+});
+    </script>

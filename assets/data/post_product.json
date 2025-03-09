@@ -1,0 +1,32 @@
+[
+ {
+   "title": "Test Produk 1",
+   "description": "Produk yang sedang di test",
+   "price": "25.000",
+   "sizes": ["S", "M", "L", "XL"],
+   "styles": [
+     {
+       "name": "Hitam",
+       "color": "#000",
+       "image_path": "/assets/images/placeholder.jpg"
+     }
+   ],
+   "featured_image_path": "",
+   "facebook_image_path": ""
+ },
+ {
+   "title": "Test Produk 2",
+   "description": "Produk yang sedang di test",
+   "price": "25.000",
+   "sizes": ["S", "M", "L", "XL"],
+   "styles": [
+     {
+       "name": "Hitam",
+       "color": "#000",
+       "image_path": "/assets/images/placeholder.jpg"
+     }
+   ],
+   "featured_image_path": "",
+   "facebook_image_path": ""
+ }
+]

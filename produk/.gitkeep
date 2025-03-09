@@ -1,0 +1,54 @@
+---
+---
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simpleCart/3.0.6/simpleCart.min.js"></script>
+
+    <h1>Daftar Produk</h1>
+    <div id="product-list"></div>
+
+    <h2>Keranjang</h2>
+    <div class="cart-container">
+        <div class="simpleCart_items"></div>
+        <button class="simpleCart_empty">Kosongkan Keranjang</button>
+        <button class="simpleCart_checkout">Checkout</button>
+    </div>
+
+    <script>
+        // Konfigurasi SimpleCart.js
+        simpleCart({
+            cartColumns: [
+                { attr: "title", label: "Produk" },
+                { attr: "price", label: "Harga", view: "currency" },
+                { view: "decrement", label: "-" },
+                { attr: "quantity", label: "Jumlah" },
+                { view: "increment", label: "+" },
+                { attr: "total", label: "Total", view: "currency" },
+                { view: "remove", text: "Hapus", label: "Hapus" }
+            ],
+            currency: "IDR"
+        });
+
+        // Ambil data dari JSON dan tampilkan di halaman
+        fetch("/assets/data/produk.json")
+            .then(response => response.json())
+            .then(products => {
+                let productList = document.getElementById("product-list");
+                products.forEach(product => {
+                    let productElement = `
+                        <div class="product">
+                            <img src="${product.image}" alt="${product.name}">
+                            <h3>${product.title}</h3>
+                            <p>Rp ${parseInt(product.price).toLocaleString()}</p>
+                            <button class="simpleCart_add" 
+                                data-name="${product.title}" 
+                                data-price="${product.price}" 
+                                data-id="${product.id}">
+                                Tambah ke Keranjang
+                            </button>
+                        </div>
+                    `;
+                    productList.innerHTML += productElement;
+                });
+            })
+            .catch(error => console.error("Gagal mengambil data produk:", error));
+    </script>

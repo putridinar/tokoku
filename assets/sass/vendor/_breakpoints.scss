@@ -1,0 +1,17 @@
+$breakpoints: (
+  "xs": 480px,
+  "sm": 768px,
+  "md": 992px,
+  "lg": 1200px,
+  "xl": 1400px
+);
+
+@mixin media($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (max-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} tidak ditemukan dalam daftar!";
+  }
+}

@@ -1,0 +1,14 @@
+@use '../base/variables' as *;
+
+.btn {
+    background-color: $primary-color;
+    color: white;
+    padding: 10px 20px;
+    border-radius: $btn-radius;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

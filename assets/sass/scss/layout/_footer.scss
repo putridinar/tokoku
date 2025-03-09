@@ -1,0 +1,8 @@
+@use '../base/variables' as *;
+
+.footer {
+    background-color: $secondary-color;
+    padding: 20px 0;
+    color: white;
+    text-align: center;
+}

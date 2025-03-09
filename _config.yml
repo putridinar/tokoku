@@ -1,0 +1,33 @@
+# Welcome to Jekyll!
+
+# Site settings
+title: Toko Online
+dev: Putri Dinar
+logo: /assets/images/logo.webp
+description: > # this means to ignore newlines until "baseurl:"
+  Toko Online Jekyll Static Whatsapp Order.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://tokoputri.vercel.app" # the base hostname & protocol for your site
+
+# Markdown settings
+markdown: kramdown
+
+placeholder: /assets/images/placeholder.jpg
+
+# Sass settings
+sass:
+  add_charset: true
+  sass_dir: assets/sass
+  style: :compressed
+
+# Build settings
+exclude:
+  - package.json
+  - README.md
+  - CNAME
+  - assets/sass
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap

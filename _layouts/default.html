@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: page.lang | default: 'id | ID' }}">
+ {% include head.html %}
+<body>
+ {% include header.html %}
+{{ content }}
+ {% include footer.html %}
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("stickyHead");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
+<script src="{{ '/assets/js/simpleCart.js' | relatative_url }}"></script>
+<script src="{{ '/assets/js/main_order.js' | relatative_url }}"></script>
+<script src="{{ '/assets/js/form_order.js' | relatative_url }}"></script>
+</body>
+</html>
+

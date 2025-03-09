@@ -1,0 +1,13 @@
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+
+.container-fluid {
+    @include mobile {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        margin-top: -20px;
+        -webkit-box-shadow: $box-shadow; 
+        box-shadow: $box-shadow;
+        background-color: $hero;
+    }
+}
