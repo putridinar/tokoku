@@ -1,6 +1,6 @@
 function processMidtransPayment(totalAmount) {
     $.ajax({
-        url: 'http://localhost:3000/midtrans-token', // Endpoint untuk mendapatkan token transaksi dari server
+        url: 'https://midtrans-pay.vercel.app/midtrans-token', // Endpoint untuk mendapatkan token transaksi dari server
         type: 'POST',
         data: {
             amount: totalAmount
