@@ -58,8 +58,8 @@ a, ul li{
 	left: 0;
 	width: 100%;
 	z-index: 1;
-  -webkit-box-shadow: 0px 12px 13px 0px rgba(85,83,83,0.39); 
-  box-shadow: 0px 12px 13px 0px rgba(85,83,83,0.39);
+	-webkit-box-shadow: 0px 12px 13px 0px rgba(85,83,83,0.39); 
+	box-shadow: 0px 12px 13px 0px rgba(85,83,83,0.39);
 	}
 }
 
@@ -71,7 +71,7 @@ a, ul li{
 // Modal overlay
 
 .modal {
-   display: none;
+	display: none;
     position: fixed;
     z-index: 999;
     top: 0;
@@ -92,10 +92,10 @@ a, ul li{
 
 .modal-content {
         background: white;
-      	width: 100%;
-	      max-width: 1200px;
+      	width: 55%;
+		max-width: 1200px;
       	height: 95%;
-	      max-height: 900px;
+		max-height: 580px;
         padding: 10px;
         border-radius: 10px;
         text-align: $middle;
@@ -103,15 +103,18 @@ a, ul li{
         display: flex;
         flex-direction: column;
         justify-content: $middle;
-@include mobile {
-   width: 95%;
-}
+	@include mobile {
+		width: 95%;
+        max-height: 750px;
+        justify-content: flex-start;
+	}
 	.modal-header {
 	    display: flex;
 	    justify-content: space-between;
 	    align-items: center;
 	    height: 40px;
 	    padding: 10px;
+		margin-bottom: 20px;
 	    flex-direction: row;
 	    flex-wrap: nowrap;
 	}
@@ -120,9 +123,9 @@ a, ul li{
 		justify-content: center;
 		align-items: flex-start;
 		gap: 20px;
-@include mobile {
-    flex-wrap: wrap;}
-  #modal-image {
+	@include mobile {
+		flex-wrap: wrap;}
+	#modal-image {
 	   max-width: 500px;
 	   object-fit: contain;
 	   background-position: $middle;
@@ -132,13 +135,17 @@ a, ul li{
 	   border-radius: 13px;
 	   box-shadow: 4px 6px 15px -15px rgb(0 0 0 / 72%);
 	}
+	.modal-desc {
+		display: block;
+		text-align: left;
+	}
   }
 }
 
 .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
+        position: relative;
+        top: 0;
+        right: 0;
         background: none;
         border: none;
         font-size: 24px;
