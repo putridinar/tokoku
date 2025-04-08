@@ -1,68 +1,28 @@
 ---
 layout: default
-permalink: /produk/
+permalink: /produk
 ---
 
 
-       <div id="post-product" class="container-fluid"></div>
-       <div class="simpleCart_items"></div>
-       <div class="simpleCart_total"></div>
-       <button class="simpleCart_checkout">Checkout</button>
-       <button class="simpleCart_empty">Kosongkan Keranjang</button>
+      <main class="content grid">
+        {% for product in site.products %}
+          <section class="entry one-third styles" itemscope itemtype="http://schema.org/Product">
 
+        		<div class="style">
+        			<a href="{{ product.url }}">
+        				<img src="{{ product.featured_image_path }}" itemprop="image">
+        			</a>
+        		</div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const productList = document.getElementById("post-product");
+            <div class="product-details">
+              <div class="product-name">
+			          <h4><a href="{{ product.url }}">{{ product.title }}</a></h4>
+              </div>
+              <div class="product-price">
+							  <p>Rp. {{ product.price }}</p>
+              </div>
+						</div>
 
-    // Menampilkan loading saat data dimuat
-    productList.innerHTML = "<p>Loading...</p>";
-
-    fetch("/assets/data/post_product.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const productHTML = data.map(product => `
-                <div class="container">
-                    <div class="simpleCart_shelfItem">
-                        <h1 class="item_name">${product.title}</h1>
-                        <p>${product.description}</p>
-                        <p class="item_price">Price: ${product.price}</p>
-                        <h2>Sizes:</h2>
-                        <ul>
-                            ${product.sizes.map(size => `<li class="item_ukuran">${size}</li>`).join('')}
-                        </ul>
-                        <h2>Styles:</h2>
-                        <div>
-                            ${product.styles.map(style => `
-                                <div>
-                                    <h3>${style.name}</h3>
-                                    <p class="item_warna">Color: ${style.color}</p>
-                                </div>
-                                    <img class="item_thumb" src="${style.image_path}" alt="${style.name}" />
-                            `).join('')}
-                        </div>
-                        <button class="item_add">Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            `).join('');
-            productList.innerHTML = productHTML;
-        })
-        .catch(error => {
-            productList.innerHTML = "<p>Failed to load products.</p>";
-            console.error("Error fetching product data:", error);
-        });
-
-    simpleCart({
-        checkout: {
-            type: "SendForm",
-            url: "/checkout"
-        },
-        currency: "IDR"
-    });
-  });
-</script>
+          </section>
+        {% endfor %}
+      </main>
