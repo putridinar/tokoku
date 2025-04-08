@@ -10,8 +10,8 @@ sizes:
 styles:
   - name: Green
     color: '#67aa79'
-    image_path: /images/products/giraffe/green.jpg
-featured_image_path: '/images/products/giraffe/green.jpg'
+    image_path:  https://raw.githubusercontent.com/putridinar/Online-storeCart/116fc0aee7048153d77ddaf8002f38b70760a7fa/assets/images/products/giraffe/green.jpg
+featured_image_path: ' https://raw.githubusercontent.com/putridinar/Online-storeCart/116fc0aee7048153d77ddaf8002f38b70760a7fa/assets/images/products/giraffe/green.jpg'
 facebook_image_path:
 ---
 
