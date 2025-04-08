@@ -22,7 +22,10 @@ main.product-grid {
                 }
     }
 
-img.card-img-top {}
+img.card-img-top {
+    max-width: 100vh;
+    width: 100%;
+}
 
 .card-box {
                 background: #ddd;
