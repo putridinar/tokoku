@@ -7,7 +7,7 @@ logo: /assets/images/logo.webp
 description: > # this means to ignore newlines until "baseurl:"
   Toko Online Jekyll Static Whatsapp Order.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://tokoputri.vercel.app" # the base hostname & protocol for your site
+url: "https://tokoonline.pages.dev" # the base hostname & protocol for your site
 
 # Markdown settings
 markdown: kramdown
