@@ -11,6 +11,8 @@ url: "https://tokoonline.pages.dev" # the base hostname & protocol for your site
 
 # Markdown settings
 markdown: kramdown
+CLIENT_KEY: SB-Mid-client-i2KW02MfN9duiyJ9
+wa_key: 6281111191209
 
 placeholder: /assets/images/placeholder.jpg
 
