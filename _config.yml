@@ -25,6 +25,13 @@ collections:
   products:
     output: true
 
+# Collection Defaults
+defaults:
+- scope:
+    type: products
+  values:
+    layout: product
+
 # Build settings
 exclude:
   - package.json
