@@ -1,0 +1,124 @@
+---
+layout: default
+---
+
+<div class="site-inner">
+  <div class="wrap">
+    <div class="content-sidebar-wrap">
+
+      <main class="content single-product simpleCart_shelfItem" itemscope itemtype="http://schema.org/Product">
+
+        <section class="product-image">
+          <div class="styles">
+            {% for style in page.styles %}
+          		<div id="product-{{ forloop.index }}" class="style" {% unless forloop.first %}style="display: none"{% endunless %}>
+        				<img src="{{ style.image_path }}" itemprop="image">
+          		</div>
+          	{% endfor %}
+          </div>
+ <img src="{{ page.featured_image_path }}" class="item_thumb" itemprop="image" style="display:none;">
+        </section>
+
+        <section class="product-details">
+          <h1 class="entry-title item_name" itemprop="name">{{ page.title }}</h1>
+          <p class="item_price"> {{ page.price }}</p>
+          {{ content }}
+
+        	<div class="style-picker">
+            <p class="margin-bottom-0">Color:</p>
+            {% for style in page.styles %}
+              <div id="product-{{ forloop.index }}"{% if forloop.first %} class="item_warna"{% endif %} style="background-color: {{ style.color }}"><span class="display-none">{{ style.name }}</span></div>
+            {% endfor %}
+        	</div>
+
+
+<label>Pilih Ukuran:</label>
+
+<div id="size-buttons">
+            {% for size in page.sizes %}
+  <button class="btn-size" data-size="{{ size }}">{{ size }}</button>
+            {% endfor %}
+</div><p class="item_ukuran" id="selectedSize">Pilih Ukuran</p>
+<script>
+  let selectedSize = "";
+
+  document.querySelectorAll(".btn-size").forEach(button => {
+    button.addEventListener("click", function() {
+      selectedSize = this.getAttribute("data-size");
+      document.getElementById("selectedSize").textContent = selectedSize;
+    });
+  });
+
+  document.querySelector(".itemAdd").addEventListener("click", function(e) {
+    if (!selectedSize) {
+      e.preventDefault(); // Mencegah proses add to cart
+      alert("Silakan pilih ukuran terlebih dahulu.");
+    } else {
+      // Lanjutkan proses tambah ke keranjang, misalnya set atribut hidden input
+      document.querySelector("input[name='item_ukuran']").value = selectedSize;
+    }
+  });
+</script>
+
+    <style>
+    .item_ukuran:before {
+      content: 'Ukuran : ';
+    }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            margin: 0 auto;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .item_Quantity {
+            width: 40px;
+            text-align: center;
+            font-size: 16px;
+            pointer-events: none;
+            background-color: #f0f0f0;
+            border: none;
+        }
+.flex-content {
+display: flex;
+align-item: center;
+justify-content: space-between;
+}
+    </style>
+<div class="flex-content">
+    <div class="quantity-container">
+        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+        <input type="number" id="quantity" class="item_Quantity" value="1" min="1" readonly>
+        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+    </div>
+<script>
+     function changeQuantity(amount) {
+         let quantityInput = document.getElementById('quantity');
+         let currentQuantity = parseInt(quantityInput.value);
+         let newQuantity = currentQuantity + amount;
+         
+         if (newQuantity < 1) newQuantity = 1;
+         quantityInput.value = newQuantity;
+     }
+</script>
+
+          <a id="item_add" class="itemAdd item_add button small" style="max-height:40px;" href="javascript:;"> Add to Cart </a></span>
+</div>
+        </section>
+
+      </main>
+
+    </div>
+  </div>
+</div>
