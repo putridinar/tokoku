@@ -11,6 +11,17 @@
     background-color: #f8f9fa;}
 }
 
+.product-grid {
+        display: grid;
+                grid-template-columns: repeat(3, minmax(250px, 1fr));
+        gap: 15px;
+                margin-top: 20px;
+        justify-content: $middle;
+                @include mobile {
+                        grid-template-columns: repeat(2, minmax(80px, 1fr));
+                }
+    }
+
 img.card-img-top {}
 
 .simpleCart_shelfItem {
