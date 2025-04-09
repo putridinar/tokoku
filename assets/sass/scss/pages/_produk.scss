@@ -59,6 +59,24 @@ img.product-img {
     margin-bottom: 20px;
 }
 
+.product-details {
+    @media (min-width: 800px) {
+      margin-left: 40px;
+    }
+
+    .item_price:before {
+      content: 'Rp.';
+    }
+
+  }
+
+  .entry-title {
+    margin-top: 0;
+    @media (min-width: 1000px) {
+      font-size: 60px;
+    }
+  }
+
 .item_ukuran {
     display: grip;
     grid-template-collumns: 1fr 1fr 1fr 1fr;
