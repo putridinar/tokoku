@@ -79,7 +79,7 @@ img.product-img {
 
 .item_ukuran {
     display: grip;
-    grid-template-collumns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, minmax(auto, 1fr) );
     grid-gap: 10px;
     font-size: 16px;
     margin: 5px 0;
