@@ -8,6 +8,10 @@
             <h2>{{ page.title }}</h2>
             <p>Semua Produk</p>
 {% elsif page.url == "/products/:title" %}
+            <h2>{{ page.name }}</h2>
+{% elsif page.url == "/checkout" %}
+            <h2>{{ page.title }}</h2>
+{% elsif page.url == "/keranjang" %}
             <h2>{{ page.title }}</h2>
 {% endif %}
         </div>
