@@ -92,21 +92,21 @@ localStorage.setItem('buyer', JSON.stringify({
         snap.pay(data.token, {
           onSuccess: function(result) {                                
             localStorage.removeItem('simpleCart_items');
-            alert("Pembayaran berhasil!");
+            showAlert("Pembayaran berhasil!");
           },
           onPending: function(result) {
-            alert("Pembayaran tertunda. Silakan selesaikan pembayaran.");
+            showAlert("Pembayaran tertunda. Silakan selesaikan pembayaran.");
           },
           onError: function(result) {
-            alert("Terjadi kesalahan saat pembayaran.");
+            showAlert("Terjadi kesalahan saat pembayaran.");
           },
           onClose: function() {
-            alert("Pembayaran dibatalkan.");
+            showAlert("Pembayaran dibatalkan.");
           }
         });
       })
       .catch(err => {
-        alert("Gagal memulai pembayaran, isi semua data diatas.");
+        showAlert("Gagal memulai pembayaran, isi semua data diatas.");
         console.error(err);
       });
     });
