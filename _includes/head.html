@@ -9,6 +9,13 @@
 	<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 	<meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Martel:200,700,900|Open+Sans:400,700|Roboto+Condensed:700">
+
 	<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 	<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
