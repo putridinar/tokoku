@@ -31,13 +31,13 @@ layout: default
         	</div>
 
 
-<label>Pilih Ukuran:</label>
+<p class="item_ukuran" id="selectedSize">Pilih</p>
 
 <div id="size-buttons">
             {% for size in page.sizes %}
   <button class="btn-size" data-size="{{ size }}">{{ size }}</button>
             {% endfor %}
-</div><p class="item_ukuran" id="selectedSize">Pilih Ukuran</p>
+</div>
 <script>
   let selectedSize = "";
 
