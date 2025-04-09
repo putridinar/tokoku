@@ -67,5 +67,11 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-
+ .box{
+  width: 450px;
+  background-color: white;
+  border: solid #000;
+  border-radius: 10px;
+  box-shadow: 2px 3px 9px -5px #6c757da1;
+ }
 }
