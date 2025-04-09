@@ -1,1 +1,32 @@
 <div id="product-list"></div>
+
+
+
+<script>
+  const productList = document.getElementById("product-list");
+
+  products.forEach(product => {
+    const section = document.createElement("section");
+    section.className = "entry card-box styles";
+    section.setAttribute("itemscope", "");
+    section.setAttribute("itemtype", "http://schema.org/Product");
+
+    section.innerHTML = `
+      <div class="style">
+        <a href="${product.url}">
+          <img class="card-img-top" src="${product.featured_image_path}" itemprop="image">
+        </a>
+      </div>
+      <div class="card-body product-details text-center">
+        <div class="product-name">
+          <h4><a href="${product.url}">${product.title}</a></h4>
+        </div>
+        <div class="product-price">
+          <p>Rp. ${product.price}</p>
+        </div>
+      </div>
+    `;
+
+    productList.appendChild(section);
+  });
+</script>
