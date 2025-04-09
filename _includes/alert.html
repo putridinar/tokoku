@@ -1,0 +1,29 @@
+<div class="custom-alert" id="customAlert">
+  <span id="alertMessage">Ini adalah alert!</span>
+  <button onclick="closeAlert()">×</button>
+</div>
+<style>
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f44336; // warna merah
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 999;
+
+  button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+</style>
