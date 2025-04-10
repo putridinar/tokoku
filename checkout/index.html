@@ -10,7 +10,8 @@ permalink: /checkout
 ---
 
  {% include hero.html %}
-<div class="container form-contain">
+<div class="container">
+<div class="form-contain">
 <form id="checkout-form" method="post" action="/">
   <label>First Name</label>
   <input type="text" name="First Name">
@@ -32,6 +33,7 @@ permalink: /checkout
 
   <button type="button" id="pay-button">bayar</button>
 </form>
+</div>
 </div>
 <script>
 document.getElementById('pay-button').addEventListener('click', function () {
