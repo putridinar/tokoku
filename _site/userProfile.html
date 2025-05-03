@@ -1,1 +1,895 @@
-<!DOCTYPE html><html lang="ID-id"><head><title>Edit Profil – Toko Putri – Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!</title><meta charset="utf-8" /><meta content='text/html; charset=utf-8' http-equiv='Content-Type'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'><meta name="description" content="Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!"><meta property="og:description" content="Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!" /><meta name="author" content="Toko Putri" /><meta property="og:title" content="Edit Profil" /><meta property="twitter:title" content="Edit Profil" /> <!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]--><link rel="stylesheet" type="text/css" href="/assets/css/style.css?v.1.0.3" /><link rel="alternate" type="application/rss+xml" title="Toko Putri - Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!" href="/feed.xml" /><link rel="stylesheet" href="/assets/frameworks/bootstrap/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"> <!-- Created with Jekyll --></head><body><header class="header bg-white shadow-sm mb-4"><nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-blur shadow-sm"><div class="container"><div class="d-flex"> <!-- Tambahan di Navbar --><div class="dropdown" id="dropProfile" style="display:none;"> <button class="btn btn-light border-0 p-0" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false"> <img id="profilePic" src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Profile" class="rounded-circle" style="width:40px; height:40px; object-fit:cover; border:2px solid #ccc;"> </button><ul class="dropdown-menu dropdown-menu-start" aria-labelledby="userMenu"><li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal">Profile Saya</button></li><li><hr class="dropdown-divider"></li><li><button class="dropdown-item text-danger" id="logoutBtn">Logout</button></li></ul></div><a class="navbar-brand fw-bold ms-2" href="/">Toko Putri</a></div><div class="d-flex gap-3 align-items-center"> <button class="btn btn-dark d-lg-none btn-round position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas"> <i class="bi bi-cart"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="countCart">0</span> </button> <button class="custom-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-label="Toggle navigation"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </button></div><!-- Desktop Menu --><div class="collapse navbar-collapse"><ul class="navbar-nav mx-auto"><li class="nav-item"><a class="nav-link" href="/">Beranda</a></li><li class="nav-item"><a class="nav-link" href="/allProduct">Produk</a></li><li class="nav-item"><a class="nav-link" href="/promo">Promo</a></li></ul><div class="d-flex gap-2"> <a href="/superadmin" id="mimi-in" class="btn btn-outline-dark btn-round"> <i class="bi bi-lock"></i> </a> <a href="/userLogin" id="log-in" class="btn btn-light btn-round" style="display:none"><i class="bi bi-person"></i></a> <button class="btn btn-dark btn-round position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas"> <i class="bi bi-cart"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span> </button></div></div></div></nav><!-- OFFCANVAS NAVBAR (Mobile Menu) --><div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"><div class="offcanvas-header"><h5 class="offcanvas-title">Menu</h5><button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button></div><div class="offcanvas-body"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="/">Beranda</a></li><li class="nav-item"><a class="nav-link" href="/allProduct">Produk</a></li><li class="nav-item"><a class="nav-link" href="/promo">Promo</a></li><li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2" href="#" id="authLink"> <i class="bi bi-box-arrow-in-right" id="authIcon"></i> <span id="authText">Login</span> </a></li></ul></div></div></header><style> body { font-family: 'Poppins', sans-serif; background: #19303833; } .navbar-blur { backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.8); transition: all 0.3s ease; } .btn-round { border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s ease; } .btn-round:hover { box-shadow: 0 0 15px rgba(0,0,0,0.15); } #cartCount { transition: all 0.3s ease; display: none; } .dropdown-menu { border-radius: 1rem; padding: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); } .navbar-nav .nav-link { position: relative; font-weight: 500; transition: color 0.3s ease; } .navbar-nav .nav-link::after { content: ""; position: absolute; bottom: 0; left: 10%; width: 80%; height: 2px; background-color: #0d6efd; transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center; } .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { transform: scaleX(1); } .navbar-nav .nav-link.active { color: #0d6efd; font-weight: 600; text-shadow: 0 0 6px rgba(13, 110, 253, 0.3); } @keyframes shake { 0% { transform: translate(0px, 0px) rotate(0deg); } 20% { transform: translate(-2px, 2px) rotate(-2deg); } 40% { transform: translate(-2px, -2px) rotate(2deg); } 60% { transform: translate(2px, 2px) rotate(-2deg); } 80% { transform: translate(2px, -2px) rotate(2deg); } 100% { transform: translate(0px, 0px) rotate(0deg); } } .shake { animation: shake 0.5s; }</style><script> const currentPath = window.location.pathname; document.querySelectorAll('.navbar-nav .nav-link').forEach(link => { if (link.getAttribute('href') === currentPath) { link.classList.add('active'); } }); </script> <!-- Offcanvas Keranjang --><div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cartOffcanvasLabel"><div class="offcanvas-header"><h5 class="offcanvas-title" id="cartOffcanvasLabel">Keranjang Belanja</h5><button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body d-flex flex-column"><div id="loginSection" class="text-center my-5 d-none"><p>Untuk melihat keranjang, silakan login terlebih dahulu:</p><button id="googleLoginButton" class="btn btn-danger"> <i class="bi bi-google me-2"></i> Login dengan Google </button></div><div id="cartItems" class="flex-grow-1 overflow-auto"> <!-- List produk akan muncul disini --></div><div class="mt-3" id="checkoutSection" style="display:none;"><h5 class="d-flex justify-content-between"> <span>Total:</span> <span id="cartTotal">Rp 0</span></h5><button class="btn btn-primary w-100 mt-3" onclick="goCheckout()">Checkout</button></div></div></div><script type="module"> import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"; import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"; import { getFirestore, onSnapshot, collection, getDocs, updateDoc, deleteDoc, doc, addDoc, getDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"; const firebaseConfig = { apiKey: "AIzaSyDN2dgu-Sdsc9K5fermxPFwDUiCzX71ce8", authDomain: "tokoputridinar.firebaseapp.com", projectId: "tokoputridinar", storageBucket: "tokoputridinar.firebasestorage.app", messagingSenderId: "747234240117", appId: "1:747234240117:web:a87af4f6724ab87ad23a3c", measurementId: "G-M2JGJH3NVQ" }; const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); const logoutBtn = document.getElementById('logoutBtn'); const loginSection = document.getElementById("loginSection"); const dropProfile = document.getElementById('dropProfile'); const mimIn = document.getElementById('mimi-in'); const authLink = document.getElementById('authLink'); const authIcon = document.getElementById('authIcon'); const authText = document.getElementById('authText'); document.addEventListener("DOMContentLoaded", () => { const cartCountEl = document.getElementById("cartCount"); const countCartEl = document.getElementById("countCart"); if (countCartEl) { onAuthStateChanged(auth, (user) => { if (user) { const cartRef = collection(db, `carts/${user.uid}/items`); onSnapshot(cartRef, (snapshot) => { const totalItems = snapshot.docs.reduce((total, doc) => { const item = doc.data(); return total + (item.quantity || 1); }, 0); countCartEl.textContent = totalItems; countCartEl.style.display = totalItems > 0 ? "inline-block" : "none"; }); } else { countCartEl.textContent = 0; countCartEl.style.display = "none"; } }); } if (cartCountEl) { onAuthStateChanged(auth, (user) => { if (user) { const cartRef = collection(db, `carts/${user.uid}/items`); onSnapshot(cartRef, (snapshot) => { const totalItems = snapshot.docs.reduce((total, doc) => { const item = doc.data(); return total + (item.quantity || 1); }, 0); cartCountEl.textContent = totalItems; cartCountEl.style.display = totalItems > 0 ? "inline-block" : "none"; }); } else { cartCountEl.textContent = 0; cartCountEl.style.display = "none"; } }); } }); // Tombol login Google googleLoginButton.addEventListener("click", async () => { // ✅ Tutup offcanvas const offcanvasEl = document.getElementById("cartCanvas"); const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl); offcanvasInstance.hide(); try { const provider = new GoogleAuthProvider(); await signInWithPopup(auth, provider); } catch (error) { console.error("❌ Gagal login:", error); showGlobalAlert("Gagal login dengan Google: " + error.message); } }); // Tombol logout logoutBtn.addEventListener('click', () => { signOut(auth) .then(() => { showGlobalAlert("Logout berhasil! 👋"); window.location.href = "/"; }) .catch((error) => { console.error(error); showGlobalAlert("❌ Gagal logout: " + error.message); }); }); let currentUser = null; // 🔥 Cek user login onAuthStateChanged(auth, (user) => { if (user) { const cartRef = collection(db, `carts/${user.uid}/items`); authText.textContent = "Logout"; authIcon.className = "bi bi-box-arrow-right"; authLink.href = "#"; authLink.addEventListener("click", (e) => { e.preventDefault(); signOut(auth).then(() => { window.location.href = "/"; }).catch((error) => { alert("❌ Logout gagal: " + error.message); }); }); currentUser = user; loginSection.classList.add("d-none"); checkoutSection.style.display = 'block'; // 🔥 TAMPILKAN dropProfile.style.display = "inline-block"; mimIn.style.display = 'none'; renderCart(); // 🖼 Gambar profil dari Google const img = document.getElementById('profilePic'); img.src = user.photoURL || "https://ionicframework.com/docs/img/demos/avatar.svg"; } else { currentUser = null; loginSection.classList.remove("d-none"); checkoutSection.style.display = 'none'; // 🔥 SEMBUNYIKAN dropProfile.style.display = "none"; mimIn.style.display = 'inline-block'; authText.textContent = "Login"; authIcon.className = "bi bi-box-arrow-in-right"; authLink.href = "/userLogin"; } }); function showCartToast(message = "Keranjang diperbarui!") { const toastEl = document.getElementById('cartToast'); const toastMsg = document.getElementById('cartToastMessage'); toastMsg.innerText = message; const toast = new bootstrap.Toast(toastEl); toast.show(); } async function renderCart() { if (!currentUser) return; // Cek login const cartItemsEl = document.getElementById('cartItems'); const cartCountMobile = document.getElementById('cartCountMobile'); const cartCountDesktop = document.getElementById('cartCountDesktop'); const cartTotalEl = document.getElementById('cartTotal'); const checkoutSection = document.getElementById('checkoutSection'); try { const cartRef = collection(db, `carts/${currentUser.uid}/items`); const snapshot = await getDocs(cartRef); let cartHTML = ''; let totalItems = 0; let totalPrice = 0; snapshot.forEach(docSnap => { const item = docSnap.data(); const itemId = docSnap.id; totalItems += item.quantity; totalPrice += item.price * item.quantity; cartHTML += `<div class="cart-item d-flex align-items-start gap-3 p-3 mb-3 shadow-sm rounded-4 bg-white position-relative"> <img src="${item.image}" alt="${item.name}" class="rounded-3" style="width: 90px; height: 90px; object-fit: cover;"><div class="flex-grow-1"><h6 class="mb-1 fw-semibold text-dark">${item.name}</h6><div class="text-muted small mb-1"> <span>Warna: ${item.color || '-'}</span> | <span>Ukuran: ${item.size || '-'}</span></div><div class="small text-muted mb-1">Jumlah: ${item.quantity}</div><div class="fw-bold text-primary">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</div></div><button class="btn btn-sm btn-light border-0 rounded-circle shadow-sm text-danger position-absolute top-0 end-0 m-2 remove-cart-btn" data-item-id="${itemId}" data-product-id="${item.productId}" data-item-data='${JSON.stringify(item)}'> <i class="bi bi-x-lg"></i> </button></div>`; }); // 🛒 Render ke DOM cartItemsEl.innerHTML = snapshot.empty ? `<p class="text-center text-muted color-danger">Keranjang kosong.</p>` : cartHTML; // 🔥 Update Cart Counter if (cartCountMobile) cartCountMobile.innerText = totalItems; if (cartCountDesktop) cartCountDesktop.innerText = totalItems; // 🔥 Update Cart Total if (cartTotalEl) cartTotalEl.innerText = "Rp " + totalPrice.toLocaleString('id-ID'); // 🔥 Tampilkan / Sembunyikan Checkout Section if (checkoutSection) { if (snapshot.empty) { checkoutSection.style.display = "none"; } else { checkoutSection.style.display = "block"; } } } catch (error) { console.error('Error load cart:', error); if (cartItemsEl) cartItemsEl.innerHTML = `<p class="text-danger">Gagal memuat keranjang.</p>`; } } // 🔥 Hapus dari keranjang dan kembalikan stok window.removeCartItem = async function(itemId, itemData, productId) { if (!currentUser) return; if (!productId) { console.error("Product ID tidak ditemukan!", itemId, itemData); showToast("❌ Gagal hapus item: ID produk tidak ada!", "danger"); return; } try { await deleteDoc(doc(db, `carts/${currentUser.uid}/items/${itemId}`)); const productRef = doc(db, "products", productId); const productSnap = await getDoc(productRef); if (productSnap.exists()) { const currentStock = productSnap.data().stock || 0; await updateDoc(productRef, { stock: currentStock + itemData.quantity }); } showToast("Item dihapus & stok dikembalikan", "success"); renderCart(); // Refresh setelah hapus } catch (error) { console.error('Error hapus item:', error); showToast("❌ Gagal hapus item!", "warning"); } } // 🔥 Saat buka cart offcanvas, auto refresh isi keranjang const cartOffcanvas = document.getElementById('cartCanvas'); if (cartOffcanvas) { cartOffcanvas.addEventListener('show.bs.offcanvas', function () { renderCart(); }); } // 🧠 Delegasi event klik tombol hapus document.getElementById('cartItems').addEventListener('click', async function(e) { const button = e.target.closest('.remove-cart-btn'); if (!button) return; const itemId = button.dataset.itemId; const productId = button.dataset.productId; let itemData; try { itemData = JSON.parse(button.dataset.itemData); } catch (err) { console.error("Gagal parsing itemData:", err); showToast("❌ Gagal hapus item!", "danger"); return; } await removeCartItem(itemId, itemData, productId); }); </script> <script> function goCheckout() { window.location.href = "/checkout"; } </script><style> .cart-item { transition: box-shadow 0.3s ease, transform 0.2s ease; } .cart-item:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.1); transform: translateY(-2px); }</style><div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999"><div id="cartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body" id="cartToastMessage"> Keranjang diperbarui.</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div></div><div id="main" role="main" class="main-content"><section class="py-5"><div class="container"><h2 class="mb-4 text-center">Edit Profil</h2><div class="row justify-content-center"><div class="col-lg-6"> <form id="profileForm" class="card shadow-sm p-4"><div class="text-center mb-3"> <img id="ppImage" src="https://ionicframework.com/docs/img/demos/avatar.svg" class="rounded-circle shadow" style="width: 100px; height: 100px; object-fit: cover;"></div><div class="mb-3"> <label for="firstName" class="form-label">Nama Depan</label> <input type="text" id="firstName" class="form-control" required></div><div class="mb-3"> <label for="lastName" class="form-label">Nama Belakang</label> <input type="text" id="lastName" class="form-control" required></div><div class="mb-3"> <label for="phone" class="form-label">No WhatsApp</label> <input type="text" id="phone" class="form-control" required></div><div class="mb-3"> <label for="email" class="form-label">Email</label> <input type="email" id="email" class="form-control" readonly></div><div class="mb-3"> <label for="kelaminType" class="form-label">Jenis Kelamin</label> <select id="kelaminType" class="form-select"> <option value="Cewek">Cewek</option> <option value="Cowok">Cowok</option> <option value="Tidak Punya">Tidak Punya</option> </select></div><div style="display:none;"> <input type="text" id="shippingType" value="J&T" style="display:none;" readonly></div><h5 class="mt-4 mb-2">Alamat Lengkap</h5><div class="mb-2"><input type="text" id="street" class="form-control" placeholder="Jalan" required></div><div class="mb-2"><input type="text" id="city" class="form-control" placeholder="Kota" required></div><div class="mb-2"><input type="text" id="postalCode" class="form-control" placeholder="Kode Pos" required></div><div class="mb-2"><input type="text" id="province" class="form-control" placeholder="Provinsi" required></div><div class="mb-3"><input type="text" id="country" class="form-control" placeholder="Negara" required></div><button type="submit" class="btn btn-primary w-100">Simpan Profil</button><p id="statusMessage" class="text-center mt-3 text-success d-none">✅ Profil berhasil disimpan.</p></form></div></div></div></section><script type="module"> import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"; import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"; const firebaseConfig = { apiKey: "AIzaSyDN2dgu-Sdsc9K5fermxPFwDUiCzX71ce8", authDomain: "tokoputridinar.firebaseapp.com", projectId: "tokoputridinar", storageBucket: "tokoputridinar.firebasestorage.app", messagingSenderId: "747234240117", appId: "1:747234240117:web:a87af4f6724ab87ad23a3c", measurementId: "G-M2JGJH3NVQ" }; const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(app); onAuthStateChanged(auth, async (user) => { if (user) { // 🖼 Gambar profil dari Google const img = document.getElementById('ppImage'); img.src = user.photoURL || "https://ionicframework.com/docs/img/demos/avatar.svg"; document.getElementById('email').value = user.email; const docRef = doc(db, "users", user.uid); const snap = await getDoc(docRef); if (snap.exists()) { const data = snap.data(); document.getElementById('firstName').value = data.firstName || ""; document.getElementById('lastName').value = data.lastName || ""; document.getElementById('phone').value = data.phone || ""; document.getElementById('email').value = data.email || ""; document.getElementById('kelaminType').value = data.kelaminType || ""; document.getElementById('shippingType').value = data.shippingType || ""; document.getElementById('street').value = data.address?.street || ""; document.getElementById('city').value = data.address?.city || ""; document.getElementById('postalCode').value = data.address?.postalCode || ""; document.getElementById('province').value = data.address?.province || ""; document.getElementById('country').value = data.address?.country || ""; } } else { if (!user) return window.location.href = "/userLogin"; } }); document.getElementById("profileForm").addEventListener("submit", async (e) => { e.preventDefault(); const user = auth.currentUser; if (!user) return showGlobalAlert("Silakan login dulu."); const data = { firstName: document.getElementById('firstName').value.trim(), lastName: document.getElementById('lastName').value.trim(), phone: document.getElementById('phone').value.trim(), email: document.getElementById('email').value.trim(), kelaminType: document.getElementById('kelaminType').value, shippingType: document.getElementById('shippingType').value, address: { street: document.getElementById('street').value.trim(), city: document.getElementById('city').value.trim(), postalCode: document.getElementById('postalCode').value.trim(), province: document.getElementById('province').value.trim(), country: document.getElementById('country').value.trim() }, updatedAt: new Date() }; await setDoc(doc(db, "users", user.uid), data); showGlobalAlert("✅ Profil berhasil diperbarui!"); window.location.href = "/"; }); </script></div><!-- Modal Profile User --><div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false"><div class="modal-dialog"><div class="modal-content shadow-lg"><div class="modal-header"><h5 class="modal-title" id="profileModalLabel">Profil Saya</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div><div class="modal-body"><div class="card text-center position-relative"> <a href="/userProfile" class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" title="Edit Profil"> <i class="bi bi-pencil"></i> </a><div class="card-body"> <img id="profileImg" src="https://ionicframework.com/docs/img/demos/avatar.svg" class="rounded-circle shadow mb-3" alt="Profile Picture" style="width: 100px; height: 100px; object-fit: cover;"><h5 id="profileName" class="card-title mb-1">Nama User</h5><p id="profileEmail" class="text-muted mb-1">email@example.com</p><p id="profilePhone" class="text-muted mb-1">081234567890</p><hr><p id="profileAddress" class="small text-muted">Alamat user disini</p><button id="orderHistoryBtn" class="btn btn-primary w-100 mt-3">Riwayat Belanja</button></div></div></div></div></div></div><script type="module"> import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"; import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"; // 🔥 Inisialisasi Firebase const firebaseConfig = { apiKey: "AIzaSyDN2dgu-Sdsc9K5fermxPFwDUiCzX71ce8", authDomain: "tokoputridinar.firebaseapp.com", projectId: "tokoputridinar", storageBucket: "tokoputridinar.firebasestorage.app", messagingSenderId: "747234240117", appId: "1:747234240117:web:a87af4f6724ab87ad23a3c", measurementId: "G-M2JGJH3NVQ" }; const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(app); onAuthStateChanged(auth, async (user) => { if (user) { const userRef = doc(db, "users", user.uid); const userSnap = await getDoc(userRef); if (userSnap.exists()) { const data = userSnap.data(); document.getElementById('profileName').innerText = `${data.firstName || ''} ${data.lastName || ''}`.trim(); document.getElementById('profileEmail').innerText = data.email || '-'; document.getElementById('profilePhone').innerText = data.phone || '-'; const address = data.address ? `${data.address.street || ''}, ${data.address.city || ''}, ${data.address.postalCode || ''}, ${data.address.province || ''}, ${data.address.country || ''}` : '-'; document.getElementById('profileAddress').innerText = address; // 🖼 Gambar profil dari Google const img = document.getElementById('profileImg'); img.src = user.photoURL || "https://ionicframework.com/docs/img/demos/avatar.svg"; } else { console.error('❌ Profil user tidak ditemukan.'); } } else { console.error('❌ Tidak ada user login.'); } }); // 🔥 Klik tombol Riwayat Belanja document.getElementById('orderHistoryBtn').addEventListener('click', () => { window.location.href = '/userOrders'; // Arahkan ke halaman riwayat }); </script><div class="position-fixed top-0 end-0 p-3" style="z-index: 9999"><div id="liveToast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body" id="toastMessage"> Notifikasi!</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div></div><script> function showToast(message, type = "primary") { const toastEl = document.getElementById('liveToast'); const toastMsg = document.getElementById('toastMessage'); // Set text toastMsg.innerText = message; // Ganti background sesuai type toastEl.className = `toast align-items-center text-white bg-${type} border-0`; // Show toast const toast = new bootstrap.Toast(toastEl); toast.show(); } </script> <!-- GLOBAL ALERT --><div id="globalAlertWrapper" class="position-fixed top-10 start-50 translate-middle-x p-3" style="z-index: 9999; width: 100%; max-width: 500px; display: none;"><div id="globalAlert" class="alert alert-warning alert-dismissible fade show shadow" role="alert" style="padding-right:inherit !important;"><p id="globalAlertMessage">Pesan alert di sini</p><hr><div class="clearfix"> <button type="button" class="btn btn-sm btn-outline-secondary ms-3 float-end" id="globalAlertCloseBtn">Oke</button></div></div></div><script> function showGlobalAlert(message = "Ada sesuatu yang terjadi...", type = "info") { const alertWrapper = document.getElementById("globalAlertWrapper"); const alertBox = document.getElementById("globalAlert"); const alertMessage = document.getElementById("globalAlertMessage"); alertBox.className = `alert alert-${type} alert-dismissible fade show shadow`; alertMessage.innerText = message; alertWrapper.style.display = "block"; } // Tombol Oke nutup alert document.getElementById("globalAlertCloseBtn").addEventListener("click", () => { document.getElementById("globalAlertWrapper").style.display = "none"; }); </script><style> .slanted-footer { width: 100%; height: 80px; background: linear-gradient(135deg, #f8f9fa, #ffffff); clip-path: polygon(0 0, 100% 100%, 0 100%); margin-bottom: -1px; } footer img { display: inline-block; height: 20px; width: 60px; border: 1px solid rgba(0, 0, 0, 0.06); margin: 3px 2px; background-color: #fff; border-radius: 2px; object-fit: contain; background-position: center; background-size: 70% auto; background-repeat: no-repeat; transition: transform 0.2s ease; } footer img:hover { transform: scale(1.1); } footer h5 { font-weight: 600; }</style><footer class="footer mt-5 py-5 bg-light text-dark" data-aos="fade-up" data-aos-delay="200" data-aos-easing="linear"><div class="container"><div class="row gy-4" data-aos="zoom-in-up" data-aos-delay="200" data-aos-easing="linear"><div class="col-md-3"><h5>Toko Putri</h5><p class="small text-muted">Toko online terpercaya untuk semua kebutuhan Anda. Belanja mudah dan aman dari rumah.</p><p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jl. Mawar No. 123, Jakarta</p><p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i>support@tokoputri.id</p><p class="small"><i class="bi bi-telephone-fill me-2"></i>+62 812 3456 7890</p></div><div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear"><h5>Kategori</h5><ul class="list-unstyled small"><li><a href="#" class="text-dark text-decoration-none">Elektronik</a></li><li><a href="#" class="text-dark text-decoration-none">Fashion</a></li><li><a href="#" class="text-dark text-decoration-none">Rumah Tangga</a></li><li><a href="#" class="text-dark text-decoration-none">Kesehatan</a></li></ul></div><div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear"><h5>Metode Pembayaran</h5><div class="d-flex flex-wrap gap-2 align-items-center"> <img src="https://plus62store.github.io/assets/images/logo/o/bca.png" alt="BCA"> <img src="https://plus62store.github.io/assets/images/logo/o/mandiri.png" alt="Mandiri"> <img src="https://plus62store.github.io/assets/images/logo/o/bri.png" alt="GoPay"> <img src="https://plus62store.github.io/assets/images/logo/o/bni.png" alt="OVO"> <img src="https://plus62store.github.io/assets/images/logo/o/xendit.png" alt="DANA"></div><h5 class="mt-4">Pengiriman</h5><div class="d-flex flex-wrap gap-2 align-items-center"> <img src="https://plus62store.github.io/assets/images/logo/o/jne.png" alt="JNE"> <img src="https://plus62store.github.io/assets/images/logo/o/jnt.png" alt="J&T"> <img src="https://plus62store.github.io/assets/images/logo/o/gosend.png" alt="GoSend"> <img src="https://plus62store.github.io/assets/images/logo/o/grabexpress.png" alt="Grab"></div></div><div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear"><h5>Newsletter</h5><form><div class="input-group mb-3"> <input type="email" class="form-control" placeholder="Email Anda"> <button class="btn btn-primary" type="submit">Daftar</button></div></form><div class="d-flex gap-3"> <a href="#"><i class="bi bi-facebook fs-5 text-dark"></i></a> <a href="#"><i class="bi bi-instagram fs-5 text-dark"></i></a> <a href="#"><i class="bi bi-twitter fs-5 text-dark"></i></a> <a href="https://github.com/putridinar/xenditCart-onlineShop"><i class="bi bi-git fs-5 text-dark"></i></a></div></div></div><div class="text-center pt-4 border-top mt-4"> <small class="text-muted">© 2025 Toko Putri. All rights reserved.</small></div></div></footer><script src="/assets/frameworks/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script> <script> AOS.init(); </script></body></html>
+<!DOCTYPE html>
+<html lang="ID-id">
+  <head>
+    <title>Edit Profil – Toko Putri – Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!">
+    <meta property="og:description" content="Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!" />
+    
+    <meta name="author" content="Toko Putri" />
+
+    
+    <meta property="og:title" content="Edit Profil" />
+    <meta property="twitter:title" content="Edit Profil" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css?v.1.0.3" />
+    <link rel="alternate" type="application/rss+xml" title="Toko Putri - Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!" href="/feed.xml" />
+	<link rel="stylesheet" href="/assets/frameworks/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Created with Jekyll -->
+  </head>
+<body>
+<header class="header bg-white shadow-sm mb-4">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-blur shadow-sm">
+	  <div class="container">
+	  <div class="d-flex">
+	<!-- Tambahan di Navbar -->
+	<div class="dropdown" id="dropProfile" style="display:none;">
+	  <button class="btn btn-light border-0 p-0" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+		<img id="profilePic" src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Profile" class="rounded-circle" style="width:40px; height:40px; object-fit:cover; border:2px solid #ccc;">
+	  </button>
+	  <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="userMenu">
+		<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal">Profile Saya</button></li>
+		<li><hr class="dropdown-divider"></li>
+		<li><button class="dropdown-item text-danger" id="logoutBtn">Logout</button></li>
+	  </ul>
+	</div>
+			<a class="navbar-brand fw-bold ms-2" href="/">Toko Putri</a>
+	</div>
+	  <div class="d-flex gap-3 align-items-center">
+			<button class="btn btn-dark d-lg-none btn-round position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas">
+			  <i class="bi bi-cart"></i>
+			  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="countCart">0</span>
+			</button>
+			<button class="custom-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-label="Toggle navigation">
+			  <span class="bar"></span>
+			  <span class="bar"></span>
+			  <span class="bar"></span>
+			</button>
+		</div>
+
+		<!-- Desktop Menu -->
+		<div class="collapse navbar-collapse">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+			<li class="nav-item"><a class="nav-link" href="/allProduct">Produk</a></li>
+			<li class="nav-item"><a class="nav-link" href="/promo">Promo</a></li>
+		  </ul>
+		  <div class="d-flex gap-2">
+			<a href="/superadmin" id="mimi-in" class="btn btn-outline-dark btn-round">
+			  <i class="bi bi-lock"></i>
+			</a>
+			<a href="/userLogin" id="log-in" class="btn btn-light btn-round" style="display:none"><i class="bi bi-person"></i></a>
+			<button class="btn btn-dark btn-round position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas">
+			  <i class="bi bi-cart"></i>
+			  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+			</button>
+		  </div>
+		</div>
+	  </div>
+	</nav>
+	<!-- OFFCANVAS NAVBAR (Mobile Menu) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+      <li class="nav-item"><a class="nav-link" href="/allProduct">Produk</a></li>
+      <li class="nav-item"><a class="nav-link" href="/promo">Promo</a></li>
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-2" href="#" id="authLink">
+    <i class="bi bi-box-arrow-in-right" id="authIcon"></i>
+    <span id="authText">Login</span>
+  </a>
+</li>
+    </ul>
+  </div>
+</div>
+</header>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #19303833;
+  }
+
+  .navbar-blur {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+  }
+
+  .btn-round {
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+  }
+
+  .btn-round:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+  }
+#cartCount {
+  transition: all 0.3s ease;
+  display: none;
+}
+  .dropdown-menu {
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+.navbar-nav .nav-link {
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: #0d6efd;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.navbar-nav .nav-link.active {
+  color: #0d6efd;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(13, 110, 253, 0.3);
+}
+  
+@keyframes shake {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  20% { transform: translate(-2px, 2px) rotate(-2deg); }
+  40% { transform: translate(-2px, -2px) rotate(2deg); }
+  60% { transform: translate(2px, 2px) rotate(-2deg); }
+  80% { transform: translate(2px, -2px) rotate(2deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+</style>
+<script>
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
+</script>
+<!-- Offcanvas Keranjang -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cartOffcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="cartOffcanvasLabel">Keranjang Belanja</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+    <div id="loginSection" class="text-center my-5 d-none">
+      <p>Untuk melihat keranjang, silakan login terlebih dahulu:</p>
+      <button id="googleLoginButton" class="btn btn-danger">
+        <i class="bi bi-google me-2"></i> Login dengan Google
+      </button>
+    </div>
+      <div id="cartItems" class="flex-grow-1 overflow-auto">
+      <!-- List produk akan muncul disini -->
+    </div>
+	<div class="mt-3" id="checkoutSection" style="display:none;">
+	  <h5 class="d-flex justify-content-between">
+		<span>Total:</span>
+		<span id="cartTotal">Rp 0</span>
+	  </h5>
+	  <button class="btn btn-primary w-100 mt-3" onclick="goCheckout()">Checkout</button>
+	</div>
+  </div>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, onSnapshot, collection, getDocs, updateDoc, deleteDoc, doc, addDoc, getDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDN2dgu-Sdsc9K5fermxPFwDUiCzX71ce8",
+    authDomain: "tokoputridinar.firebaseapp.com",
+    projectId: "tokoputridinar",
+    storageBucket: "tokoputridinar.firebasestorage.app",
+    messagingSenderId: "747234240117",
+    appId: "1:747234240117:web:a87af4f6724ab87ad23a3c",
+    measurementId: "G-M2JGJH3NVQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const logoutBtn = document.getElementById('logoutBtn');
+const loginSection = document.getElementById("loginSection");
+const dropProfile = document.getElementById('dropProfile');
+const mimIn = document.getElementById('mimi-in');
+const authLink = document.getElementById('authLink');
+const authIcon = document.getElementById('authIcon');
+const authText = document.getElementById('authText');
+
+document.addEventListener("DOMContentLoaded", () => {
+const cartCountEl = document.getElementById("cartCount");
+const countCartEl = document.getElementById("countCart");
+
+if (countCartEl) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const cartRef = collection(db, `carts/${user.uid}/items`);
+
+      onSnapshot(cartRef, (snapshot) => {
+        const totalItems = snapshot.docs.reduce((total, doc) => {
+          const item = doc.data();
+          return total + (item.quantity || 1);
+        }, 0);
+
+        countCartEl.textContent = totalItems;
+        countCartEl.style.display = totalItems > 0 ? "inline-block" : "none";
+      });
+    } else {
+      countCartEl.textContent = 0;
+      countCartEl.style.display = "none";
+    }
+  });
+}
+if (cartCountEl) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const cartRef = collection(db, `carts/${user.uid}/items`);
+
+      onSnapshot(cartRef, (snapshot) => {
+        const totalItems = snapshot.docs.reduce((total, doc) => {
+          const item = doc.data();
+          return total + (item.quantity || 1);
+        }, 0);
+
+        cartCountEl.textContent = totalItems;
+        cartCountEl.style.display = totalItems > 0 ? "inline-block" : "none";
+      });
+    } else {
+      cartCountEl.textContent = 0;
+      cartCountEl.style.display = "none";
+    }
+  });
+}
+});
+
+    // Tombol login Google
+    googleLoginButton.addEventListener("click", async () => {
+        
+        // ✅ Tutup offcanvas
+        const offcanvasEl = document.getElementById("cartCanvas");
+        const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasEl) 
+                              || new bootstrap.Offcanvas(offcanvasEl);
+        offcanvasInstance.hide();
+    
+      try {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+      } catch (error) {
+        console.error("❌ Gagal login:", error);
+        showGlobalAlert("Gagal login dengan Google: " + error.message);
+      }
+    });
+
+// Tombol logout
+logoutBtn.addEventListener('click', () => {
+  signOut(auth)
+    .then(() => {
+      showGlobalAlert("Logout berhasil! 👋");
+      window.location.href = "/";
+    })
+    .catch((error) => {
+      console.error(error);
+      showGlobalAlert("❌ Gagal logout: " + error.message);
+    });
+});
+
+let currentUser = null;
+
+// 🔥 Cek user login
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const cartRef = collection(db, `carts/${user.uid}/items`);
+
+	authText.textContent = "Logout";
+      authIcon.className = "bi bi-box-arrow-right";
+      authLink.href = "#";
+      authLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+          window.location.href = "/";
+        }).catch((error) => {
+          alert("❌ Logout gagal: " + error.message);
+        });
+      });
+    currentUser = user;
+    loginSection.classList.add("d-none");
+    checkoutSection.style.display = 'block'; // 🔥 TAMPILKAN
+    dropProfile.style.display = "inline-block";
+    mimIn.style.display = 'none';
+    renderCart();
+	
+      // 🖼 Gambar profil dari Google
+      const img = document.getElementById('profilePic');
+      img.src = user.photoURL || "https://ionicframework.com/docs/img/demos/avatar.svg";
+  } else {
+    currentUser = null;
+    loginSection.classList.remove("d-none");
+    checkoutSection.style.display = 'none'; // 🔥 SEMBUNYIKAN
+    dropProfile.style.display = "none";
+    mimIn.style.display = 'inline-block';
+      authText.textContent = "Login";
+      authIcon.className = "bi bi-box-arrow-in-right";
+      authLink.href = "/userLogin";
+  }
+});
+	  
+	  
+function showCartToast(message = "Keranjang diperbarui!") {
+  const toastEl = document.getElementById('cartToast');
+  const toastMsg = document.getElementById('cartToastMessage');
+  
+  toastMsg.innerText = message;
+  
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
+}
+
+async function renderCart() {
+  if (!currentUser) return; // Cek login
+
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartCountMobile = document.getElementById('cartCountMobile');
+  const cartCountDesktop = document.getElementById('cartCountDesktop');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const checkoutSection = document.getElementById('checkoutSection');
+
+  try {
+    const cartRef = collection(db, `carts/${currentUser.uid}/items`);
+    const snapshot = await getDocs(cartRef);
+
+    let cartHTML = '';
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    snapshot.forEach(docSnap => {
+      const item = docSnap.data();
+      const itemId = docSnap.id;
+
+      totalItems += item.quantity;
+      totalPrice += item.price * item.quantity;
+
+      cartHTML += `
+		<div class="cart-item d-flex align-items-start gap-3 p-3 mb-3 shadow-sm rounded-4 bg-white position-relative">
+		  <img src="${item.image}" alt="${item.name}" class="rounded-3" style="width: 90px; height: 90px; object-fit: cover;">
+
+		  <div class="flex-grow-1">
+			<h6 class="mb-1 fw-semibold text-dark">${item.name}</h6>
+			<div class="text-muted small mb-1">
+			  <span>Warna: ${item.color || '-'}</span> | 
+			  <span>Ukuran: ${item.size || '-'}</span>
+			</div>
+			<div class="small text-muted mb-1">Jumlah: ${item.quantity}</div>
+			<div class="fw-bold text-primary">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</div>
+		  </div>
+
+      <button
+        class="btn btn-sm btn-light border-0 rounded-circle shadow-sm text-danger position-absolute top-0 end-0 m-2 remove-cart-btn"
+        data-item-id="${itemId}"
+        data-product-id="${item.productId}"
+        data-item-data='${JSON.stringify(item)}'>
+        <i class="bi bi-x-lg"></i>
+      </button>
+		</div>
+
+      `;
+    });
+
+    // 🛒 Render ke DOM
+    cartItemsEl.innerHTML = snapshot.empty
+      ? `<p class="text-center text-muted color-danger">Keranjang kosong.</p>`
+      : cartHTML;
+
+    // 🔥 Update Cart Counter
+    if (cartCountMobile) cartCountMobile.innerText = totalItems;
+    if (cartCountDesktop) cartCountDesktop.innerText = totalItems;
+
+    // 🔥 Update Cart Total
+    if (cartTotalEl) cartTotalEl.innerText = "Rp " + totalPrice.toLocaleString('id-ID');
+
+    // 🔥 Tampilkan / Sembunyikan Checkout Section
+    if (checkoutSection) {
+      if (snapshot.empty) {
+        checkoutSection.style.display = "none";
+      } else {
+        checkoutSection.style.display = "block";
+      }
+    }
+
+  } catch (error) {
+    console.error('Error load cart:', error);
+    if (cartItemsEl) cartItemsEl.innerHTML = `<p class="text-danger">Gagal memuat keranjang.</p>`;
+  }
+}
+
+// 🔥 Hapus dari keranjang dan kembalikan stok
+window.removeCartItem = async function(itemId, itemData, productId) {
+  if (!currentUser) return;
+
+  if (!productId) {
+    console.error("Product ID tidak ditemukan!", itemId, itemData);
+    showToast("❌ Gagal hapus item: ID produk tidak ada!", "danger");
+    return;
+  }
+
+  try {
+    await deleteDoc(doc(db, `carts/${currentUser.uid}/items/${itemId}`));
+
+    const productRef = doc(db, "products", productId);
+    const productSnap = await getDoc(productRef);
+    if (productSnap.exists()) {
+      const currentStock = productSnap.data().stock || 0;
+      await updateDoc(productRef, {
+        stock: currentStock + itemData.quantity
+      });
+    }
+
+    showToast("Item dihapus & stok dikembalikan", "success");
+    renderCart(); // Refresh setelah hapus
+  } catch (error) {
+    console.error('Error hapus item:', error);
+    showToast("❌ Gagal hapus item!", "warning");
+  }
+}
+
+// 🔥 Saat buka cart offcanvas, auto refresh isi keranjang
+const cartOffcanvas = document.getElementById('cartCanvas');
+if (cartOffcanvas) {
+  cartOffcanvas.addEventListener('show.bs.offcanvas', function () {
+    renderCart();
+  });
+}
+
+// 🧠 Delegasi event klik tombol hapus
+document.getElementById('cartItems').addEventListener('click', async function(e) {
+  const button = e.target.closest('.remove-cart-btn');
+  if (!button) return;
+
+  const itemId = button.dataset.itemId;
+  const productId = button.dataset.productId;
+  let itemData;
+
+  try {
+    itemData = JSON.parse(button.dataset.itemData);
+  } catch (err) {
+    console.error("Gagal parsing itemData:", err);
+    showToast("❌ Gagal hapus item!", "danger");
+    return;
+  }
+
+  await removeCartItem(itemId, itemData, productId);
+});
+</script>
+
+<script>
+function goCheckout() {
+  window.location.href = "/checkout";
+}
+</script>
+<style>
+.cart-item {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.cart-item:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+</style>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+  <div id="cartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="cartToastMessage">
+        Keranjang diperbarui.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+
+<div id="main" role="main" class="main-content">
+<section class="py-5">
+  <div class="container">
+    <h2 class="mb-4 text-center">Edit Profil</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <form id="profileForm" class="card shadow-sm p-4">
+          <div class="text-center mb-3">
+            <img id="ppImage" src="https://ionicframework.com/docs/img/demos/avatar.svg" class="rounded-circle shadow" style="width: 100px; height: 100px; object-fit: cover;">
+          </div>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">Nama Depan</label>
+            <input type="text" id="firstName" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Nama Belakang</label>
+            <input type="text" id="lastName" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">No WhatsApp</label>
+            <input type="text" id="phone" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="kelaminType" class="form-label">Jenis Kelamin</label>
+            <select id="kelaminType" class="form-select">
+              <option value="Cewek">Cewek</option>
+              <option value="Cowok">Cowok</option>
+              <option value="Tidak Punya">Tidak Punya</option>
+            </select>
+          </div>
+          <div style="display:none;">
+            <input type="text" id="shippingType" value="J&T" style="display:none;" readonly>
+          </div>
+
+          <h5 class="mt-4 mb-2">Alamat Lengkap</h5>
+          <div class="mb-2"><input type="text" id="street" class="form-control" placeholder="Jalan" required></div>
+          <div class="mb-2"><input type="text" id="city" class="form-control" placeholder="Kota" required></div>
+          <div class="mb-2"><input type="text" id="postalCode" class="form-control" placeholder="Kode Pos" required></div>
+          <div class="mb-2"><input type="text" id="province" class="form-control" placeholder="Provinsi" required></div>
+          <div class="mb-3"><input type="text" id="country" class="form-control" placeholder="Negara" required></div>
+
+          <button type="submit" class="btn btn-primary w-100">Simpan Profil</button>
+          <p id="statusMessage" class="text-center mt-3 text-success d-none">✅ Profil berhasil disimpan.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDN2dgu-Sdsc9K5fermxPFwDUiCzX71ce8",
+  authDomain: "tokoputridinar.firebaseapp.com",
+  projectId: "tokoputridinar",
+  storageBucket: "tokoputridinar.firebasestorage.app",
+  messagingSenderId: "747234240117",
+  appId: "1:747234240117:web:a87af4f6724ab87ad23a3c",
+  measurementId: "G-M2JGJH3NVQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+
+      // 🖼 Gambar profil dari Google
+	const img = document.getElementById('ppImage');
+	img.src = user.photoURL || "https://ionicframework.com/docs/img/demos/avatar.svg";
+		  
+	document.getElementById('email').value = user.email;
+	const docRef = doc(db, "users", user.uid);
+	const snap = await getDoc(docRef);
+  
+  if (snap.exists()) {
+    const data = snap.data();
+    document.getElementById('firstName').value = data.firstName || "";
+    document.getElementById('lastName').value = data.lastName || "";
+    document.getElementById('phone').value = data.phone || "";
+    document.getElementById('email').value = data.email || "";
+    document.getElementById('kelaminType').value = data.kelaminType || "";
+    document.getElementById('shippingType').value = data.shippingType || "";
+    document.getElementById('street').value = data.address?.street || "";
+    document.getElementById('city').value = data.address?.city || "";
+    document.getElementById('postalCode').value = data.address?.postalCode || "";
+    document.getElementById('province').value = data.address?.province || "";
+    document.getElementById('country').value = data.address?.country || "";
+  }
+}
+ else {
+  if (!user) return window.location.href = "/userLogin";
+  }
+});
+
+document.getElementById("profileForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return showGlobalAlert("Silakan login dulu.");
+
+  const data = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName: document.getElementById('lastName').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    kelaminType: document.getElementById('kelaminType').value,
+    shippingType: document.getElementById('shippingType').value,
+    address: {
+      street: document.getElementById('street').value.trim(),
+      city: document.getElementById('city').value.trim(),
+      postalCode: document.getElementById('postalCode').value.trim(),
+      province: document.getElementById('province').value.trim(),
+      country: document.getElementById('country').value.trim()
+    },
+    updatedAt: new Date()
+  };
+
+  await setDoc(doc(db, "users", user.uid), data);
+  showGlobalAlert("✅ Profil berhasil diperbarui!");
+  window.location.href = "/";
+});
+</script>
+
+</div>
+<!-- Modal Profile User -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal-dialog">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalLabel">Profil Saya</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+      </div>
+		<div class="modal-body">
+		  <div class="card text-center position-relative">
+			<a href="/userProfile" class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" title="Edit Profil">
+			  <i class="bi bi-pencil"></i>
+			</a>
+
+			<div class="card-body">
+			  <img id="profileImg" src="https://ionicframework.com/docs/img/demos/avatar.svg" class="rounded-circle shadow mb-3" alt="Profile Picture" style="width: 100px; height: 100px; object-fit: cover;">
+			  <h5 id="profileName" class="card-title mb-1">Nama User</h5>
+			  <p id="profileEmail" class="text-muted mb-1">email@example.com</p>
+			  <p id="profilePhone" class="text-muted mb-1">081234567890</p>
+			  <hr>
+			  <p id="profileAddress" class="small text-muted">Alamat user disini</p>
+			  <button id="orderHistoryBtn" class="btn btn-primary w-100 mt-3">Riwayat Belanja</button>
+			</div>
+		  </div>
+		</div>
+    </div>
+  </div>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// 🔥 Inisialisasi Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDN2dgu-Sdsc9K5fermxPFwDUiCzX71ce8",
+    authDomain: "tokoputridinar.firebaseapp.com",
+    projectId: "tokoputridinar",
+    storageBucket: "tokoputridinar.firebasestorage.app",
+    messagingSenderId: "747234240117",
+    appId: "1:747234240117:web:a87af4f6724ab87ad23a3c",
+    measurementId: "G-M2JGJH3NVQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      const data = userSnap.data();
+
+      document.getElementById('profileName').innerText = `${data.firstName || ''} ${data.lastName || ''}`.trim();
+      document.getElementById('profileEmail').innerText = data.email || '-';
+      document.getElementById('profilePhone').innerText = data.phone || '-';
+
+      const address = data.address 
+        ? `${data.address.street || ''}, ${data.address.city || ''}, ${data.address.postalCode || ''}, ${data.address.province || ''}, ${data.address.country || ''}` 
+        : '-';
+
+      document.getElementById('profileAddress').innerText = address;
+	  
+      // 🖼 Gambar profil dari Google
+      const img = document.getElementById('profileImg');
+      img.src = user.photoURL || "https://ionicframework.com/docs/img/demos/avatar.svg";
+    } else {
+      console.error('❌ Profil user tidak ditemukan.');
+    }
+  } else {
+    console.error('❌ Tidak ada user login.');
+  }
+});
+
+// 🔥 Klik tombol Riwayat Belanja
+document.getElementById('orderHistoryBtn').addEventListener('click', () => {
+  window.location.href = '/userOrders'; // Arahkan ke halaman riwayat
+});
+</script>
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+  <div id="liveToast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMessage">
+        Notifikasi!
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+<script>
+function showToast(message, type = "primary") {
+  const toastEl = document.getElementById('liveToast');
+  const toastMsg = document.getElementById('toastMessage');
+  
+  // Set text
+  toastMsg.innerText = message;
+  
+  // Ganti background sesuai type
+  toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+  
+  // Show toast
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
+}
+</script>
+<!-- GLOBAL ALERT -->
+<div id="globalAlertWrapper" class="position-fixed top-10 start-50 translate-middle-x p-3" style="z-index: 9999; width: 100%; max-width: 500px; display: none;">
+  <div id="globalAlert" class="alert alert-warning alert-dismissible fade show shadow" role="alert" style="padding-right:inherit !important;">
+    <p id="globalAlertMessage">Pesan alert di sini</p>
+	<hr><div class="clearfix">
+    <button type="button" class="btn btn-sm btn-outline-secondary ms-3 float-end" id="globalAlertCloseBtn">Oke</button></div>
+  </div>
+</div>
+
+<script>
+function showGlobalAlert(message = "Ada sesuatu yang terjadi...", type = "info") {
+  const alertWrapper = document.getElementById("globalAlertWrapper");
+  const alertBox = document.getElementById("globalAlert");
+  const alertMessage = document.getElementById("globalAlertMessage");
+
+  alertBox.className = `alert alert-${type} alert-dismissible fade show shadow`;
+  alertMessage.innerText = message;
+  alertWrapper.style.display = "block";
+}
+
+// Tombol Oke nutup alert
+document.getElementById("globalAlertCloseBtn").addEventListener("click", () => {
+  document.getElementById("globalAlertWrapper").style.display = "none";
+});
+</script>
+
+<style>
+.slanted-footer {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  margin-bottom: -1px;
+}
+
+footer img {
+    display: inline-block;
+    height: 20px;
+    width: 60px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    margin: 3px 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    object-fit: contain;
+    background-position: center;
+    background-size: 70% auto;
+    background-repeat: no-repeat;
+    transition: transform 0.2s ease;
+}
+footer img:hover {
+  transform: scale(1.1);
+}
+
+footer h5 {
+  font-weight: 600;
+}
+</style>
+<footer class="footer mt-5 py-5 bg-light text-dark" data-aos="fade-up" data-aos-delay="200" data-aos-easing="linear">
+  <div class="container">
+    <div class="row gy-4" data-aos="zoom-in-up" data-aos-delay="200" data-aos-easing="linear">
+      <div class="col-md-3">
+        <h5>Toko Putri</h5>
+        <p class="small text-muted">Toko online terpercaya untuk semua kebutuhan Anda. Belanja mudah dan aman dari rumah.</p>
+        <p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jl. Mawar No. 123, Jakarta</p>
+        <p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i>support@tokoputri.id</p>
+        <p class="small"><i class="bi bi-telephone-fill me-2"></i>+62 812 3456 7890</p>
+      </div>
+
+      <div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear">
+        <h5>Kategori</h5>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="text-dark text-decoration-none">Elektronik</a></li>
+          <li><a href="#" class="text-dark text-decoration-none">Fashion</a></li>
+          <li><a href="#" class="text-dark text-decoration-none">Rumah Tangga</a></li>
+          <li><a href="#" class="text-dark text-decoration-none">Kesehatan</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear">
+        <h5>Metode Pembayaran</h5>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <img src="https://plus62store.github.io/assets/images/logo/o/bca.png" alt="BCA">
+          <img src="https://plus62store.github.io/assets/images/logo/o/mandiri.png" alt="Mandiri">
+          <img src="https://plus62store.github.io/assets/images/logo/o/bri.png" alt="GoPay">
+          <img src="https://plus62store.github.io/assets/images/logo/o/bni.png" alt="OVO">
+          <img src="https://plus62store.github.io/assets/images/logo/o/xendit.png" alt="DANA">
+        </div>
+
+        <h5 class="mt-4">Pengiriman</h5>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <img src="https://plus62store.github.io/assets/images/logo/o/jne.png" alt="JNE">
+          <img src="https://plus62store.github.io/assets/images/logo/o/jnt.png" alt="J&T">
+          <img src="https://plus62store.github.io/assets/images/logo/o/gosend.png" alt="GoSend">
+          <img src="https://plus62store.github.io/assets/images/logo/o/grabexpress.png" alt="Grab">
+        </div>
+      </div>
+
+      <div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear">
+        <h5>Newsletter</h5>
+        <form>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Email Anda">
+            <button class="btn btn-primary" type="submit">Daftar</button>
+          </div>
+        </form>
+        <div class="d-flex gap-3">
+          <a href="#"><i class="bi bi-facebook fs-5 text-dark"></i></a>
+          <a href="#"><i class="bi bi-instagram fs-5 text-dark"></i></a>
+          <a href="#"><i class="bi bi-twitter fs-5 text-dark"></i></a>
+          <a href="https://github.com/putridinar/xenditCart-onlineShop"><i class="bi bi-git fs-5 text-dark"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center pt-4 border-top mt-4">
+      <small class="text-muted">© 2025 Toko Putri. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+
+<script src="/assets/frameworks/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
