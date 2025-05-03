@@ -524,11 +524,11 @@ function goCheckout() {
 
 
 <section class="hero-section text-white d-flex align-items-center justify-content-center" style="height: 100vh; font-family: 'Poppins', sans-serif;">
-  <div class="container text-center" data-aos="zoom-in">
+  <div class="container text-center" data-aos="zoom-in" data-aos-easing="ease-in-sine">
     <div class="glass p-4 p-md-5 rounded-4 shadow-lg">
       <h1 class="display-4 fw-bold mb-3">Temukan Gaya Terbaikmu</h1>
       <p class="lead mb-4">Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!</p>
-      <a href="/allProduct" class="btn btn-primary btn-lg px-5 py-3 shadow glowing-btn" data-aos="fade-up" data-aos-delay="500">Belanja Sekarang</a>
+      <a href="/allProduct" class="btn btn-primary btn-lg px-5 py-3 shadow glowing-btn" data-aos="fade-up" data-aos-delay="300">Belanja Sekarang</a>
     </div>
   </div>
 		<span style="position:fixed;top:63px;right:10px;z-index:5;"><span class="badge bg-danger rounded blink">🟠 staging mode</span></span>
@@ -669,7 +669,7 @@ onAuthStateChanged(auth, (user) => {
 </script>
 
 <div id="main" role="main" class="main-content">
-<div class="product-grid" id="productGrid">
+<div class="product-grid container" id="productGrid">
   <div class="loading"><div class="d-flex justify-content-center align-items-center" style="height: 100vh;" id="loadingSpinner">
   <div class="spinner-grow text-secondary" role="status">
     <span class="visually-hidden">Loading...</span>
@@ -725,12 +725,7 @@ async function fetchAndRenderProducts() {
     querySnapshot.forEach(doc => {
       const data = doc.data();
       grid.innerHTML += `
-<div class="card position-relative shadow-sm border-0 rounded-4 overflow-hidden tilt-card"
-     data-tilt
-     data-tilt-max="15"
-     data-tilt-speed="400"
-     data-tilt-glare="true"
-     data-tilt-max-glare="0.3" data-aos="flip-up" data-aos-delay="500" data-aos-easing="linear">
+<div class="card position-relative shadow-sm border-0 rounded-4 overflow-hidden tilt-card" data-aos="flip-up" data-aos-delay="300" data-aos-easing="ease-in-sine">
   
   <!-- Tombol Favorit di pojok atas -->
   <button id="likeButton" class="btn btn-light position-absolute top-0 end-0 m-2 shadow-sm rounded-circle like-btn" style="z-index: 10;">
@@ -738,7 +733,7 @@ async function fetchAndRenderProducts() {
   </button>
 
   <!-- Gambar Produk -->
-  <img class="card-img-top" src="${data.image}" alt="${data.name}" style="object-fit: cover; height: 250px;">
+  <img class="card-img-top" src="${data.image}" alt="${data.name}" style="object-fit: cover; height: 250px;" data-aos="zoom-in" data-aos-delay="200" data-aos-easing="ease-in-sine">
 
   <!-- Isi Card -->
   <div class="card-body text-center">
@@ -959,7 +954,7 @@ footer h5 {
 </style>
 <footer class="footer mt-5 py-5 bg-light text-dark" data-aos="fade-up" data-aos-delay="200" data-aos-easing="linear">
   <div class="container">
-    <div class="row gy-4" data-aos="zoom-in-up" data-aos-delay="500" data-aos-easing="linear">
+    <div class="row gy-4" data-aos="zoom-in-up" data-aos-delay="200" data-aos-easing="linear">
       <div class="col-md-3">
         <h5>Toko Putri</h5>
         <p class="small text-muted">Toko online terpercaya untuk semua kebutuhan Anda. Belanja mudah dan aman dari rumah.</p>
@@ -968,7 +963,7 @@ footer h5 {
         <p class="small"><i class="bi bi-telephone-fill me-2"></i>+62 812 3456 7890</p>
       </div>
 
-      <div class="col-md-3" data-aos="flip-down" data-aos-delay="600" data-aos-easing="linear">
+      <div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear">
         <h5>Kategori</h5>
         <ul class="list-unstyled small">
           <li><a href="#" class="text-dark text-decoration-none">Elektronik</a></li>
@@ -978,7 +973,7 @@ footer h5 {
         </ul>
       </div>
 
-      <div class="col-md-3" data-aos="flip-down" data-aos-delay="600" data-aos-easing="linear">
+      <div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear">
         <h5>Metode Pembayaran</h5>
         <div class="d-flex flex-wrap gap-2 align-items-center">
           <img src="https://plus62store.github.io/assets/images/logo/o/bca.png" alt="BCA">
@@ -997,7 +992,7 @@ footer h5 {
         </div>
       </div>
 
-      <div class="col-md-3" data-aos="flip-down" data-aos-delay="600" data-aos-easing="linear">
+      <div class="col-md-3" data-aos="flip-down" data-aos-delay="200" data-aos-easing="linear">
         <h5>Newsletter</h5>
         <form>
           <div class="input-group mb-3">
