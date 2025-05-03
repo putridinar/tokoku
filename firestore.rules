@@ -1,0 +1,60 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 🔍 Fungsi bantu untuk cek role admin
+    function isAdmin() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+
+    // 🔐 Proteksi koleksi dashboard (atau koleksi lain yg sensitif)
+    match /adminData/{docId} {
+      allow read, write: if request.auth != null && isAdmin();
+    }
+
+    // 🔒 Semua produk tetap bisa dibaca publik
+    match /products/{productId} {
+      allow read: if true;
+
+      // Admin bisa create/update/delete produk
+      allow write: if request.auth != null && isAdmin();
+      
+      // Optional: pengguna biasa boleh update rating
+      allow update: if request.auth != null &&
+        request.resource.data.ratingTotal is number &&
+        request.resource.data.ratingCount is number;
+
+    }
+
+    // Tambahan rules lainnya tetap seperti user profile, carts, orders, dsb.
+    match /users/{userId} {
+      allow read, write, create: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /carts/{userId}/items/{itemId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /orders/{orderId} {
+      allow read: if request.auth != null &&
+        (isAdmin() || resource.data.userId == request.auth.uid);
+
+      allow create: if request.auth != null &&
+        request.resource.data.userId == request.auth.uid;
+
+      allow update: if request.auth != null &&
+        (
+          isAdmin() || 
+          resource.data.userId == request.auth.uid
+        );
+    }
+        
+    // LIKES
+    match /likes/{userId}/products/{productId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }        
+    // RATE
+    match /ratings/{userId}/products/{productId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
