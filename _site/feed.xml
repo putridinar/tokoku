@@ -3,8 +3,8 @@
   <channel>
     <title></title>
     <description>Belanja fashion kekinian, nyaman, dan berkualitas. Buktikan gayamu sekarang!</description>
-    <link>http://localhost:1111</link>
-    <atom:link href="http://localhost:1111/feed.xml" rel="self" type="application/rss+xml" />
+    <link>https://tokoputri.pages.dev</link>
+    <atom:link href="https://tokoputri.pages.dev/feed.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>

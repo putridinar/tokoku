@@ -1,1 +1,1 @@
-Sitemap: http://localhost:1111/sitemap.xml
+Sitemap: https://tokoputri.pages.dev/sitemap.xml
